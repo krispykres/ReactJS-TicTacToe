@@ -11,7 +11,7 @@ class Square extends React.Component {
       };
   }
     
-  
+  //Here we are rendering buttons that have an initial value of null, but state is updated to display 'X' every time they are clicked.
   render() {
     return (
       <button className="square" onClick={ () => this.setState({value: 'X'}) }>
@@ -21,13 +21,13 @@ class Square extends React.Component {
   }
 }
 
-
-//test
 class Board extends React.Component {
+  //This method is returns the Square component, passing a prop value of i
   renderSquare(i) {
     return <Square value={i} />;
   }
 
+  //Here we are rendering the entire board, passing values to be accepted by our renderSquare function
   render() {
     const status = 'Next player: X';
 
@@ -53,6 +53,7 @@ class Board extends React.Component {
     );
   }
 }
+
 
 class Game extends React.Component {
   render() {
