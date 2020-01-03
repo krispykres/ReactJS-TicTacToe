@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+/*
 class Square extends React.Component {
   //Here we are rendering buttons to use an onClick event to call the the onClick props in the Board component. The value is passed as the props value from the renderswuare method in the board component.
   render() {
@@ -14,6 +15,19 @@ class Square extends React.Component {
       </button>
     );
   }
+}
+*/
+
+//class component above converted into a functional component
+function Square(props) {
+    return (
+      <button
+       className="square"
+       onClick={ props.onClick }
+      >
+         {props.value}
+      </button>
+    )
 }
 
 class Board extends React.Component {
