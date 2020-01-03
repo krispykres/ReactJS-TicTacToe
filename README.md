@@ -1,2 +1,3 @@
 # ReactJS-TicTacToe
-v1
+
+ReactJS tutorial of the Tic Tac Toe app
