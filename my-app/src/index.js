@@ -21,6 +21,8 @@ class Square extends React.Component {
   }
 }
 
+
+//test
 class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
