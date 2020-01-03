@@ -36,6 +36,7 @@ class Board extends React.Component {
       super(props);
       this.state = {
           squares: Array(9).fill(null),
+          xIsNext: true,
       };
   }
 
@@ -43,8 +44,11 @@ class Board extends React.Component {
   //State is now held in the board component instead of the square components
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState( {squares: squares} );
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+        squares: squares,
+        xIsNext: !this.state.xIsNext,
+    });
   }
     
   //This method returns the Square component, passing down 2 props: value and onClick. The onClick prop is a function that the square component can call when clicked.
@@ -59,7 +63,7 @@ class Board extends React.Component {
 
   //Here we are rendering the entire board, passing values to be accepted by our renderSquare function
   render() {
-    const status = 'Next player: X';
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
