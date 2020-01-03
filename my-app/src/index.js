@@ -33,7 +33,7 @@ class Board extends React.Component {
     this.setState( {squares: squares} );
   }
     
-  //This method returns the Square component, passing down 2 props: value and onClick. The onClick prop is a function that swuare can call when clicked.
+  //This method returns the Square component, passing down 2 props: value and onClick. The onClick prop is a function that the square component can call when clicked.
   renderSquare(i) {
     return (
     <Square
