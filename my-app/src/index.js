@@ -74,14 +74,15 @@ class Game extends React.Component {
           history: [{
               squares: Array(9).fill(null),
           }],
-          xIsNext: true
+          stepNumber: 0,
+          xIsNext: true,
       };
   }
     
   //handleClick method to get the array, duplicate it and save it as squares, have the associated value of the position in the array be x, and update the state of the array to reflect the new value (X).
   //State is now held in the board component instead of the square components
   handleClick(i) {
-    const history = this.state.history;
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     //This if statement allows the handleClick function to return early by ignoring a click if someone has won the game or if a Square is already filled.
@@ -93,13 +94,21 @@ class Game extends React.Component {
       history: history.concat([{
           squares: squares
       }]),
+        stepNumber: history.length,
         xIsNext: !this.state.xIsNext,
     });
+  }
+    
+  jumpTo(step) {
+      this.setState({
+          stepNumber: step,
+          xIsNext: (step % 2) === 0,
+      });
   }
 
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
       
     const moves = history.map((step, move) => {
@@ -107,7 +116,7 @@ class Game extends React.Component {
             'Go to move #' + move :
             'Go to game start';
         return (
-            <li>
+            <li key={move}>
                 <button onClick={ () => this.jumpTo(move)}>{desc}</button>
             </li>
         );
